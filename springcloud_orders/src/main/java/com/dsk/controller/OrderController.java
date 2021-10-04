@@ -1,10 +1,14 @@
 package com.dsk.controller;
 
 import com.dsk.entity.Order;
+import com.dsk.vos.CollectionVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -35,10 +39,40 @@ public class OrderController {
     }
 
 
-    // 对象的接收  @RequestParam("order") form
+    // 对象的接收  @RequestParam("order") form 必须传文件格式
     @PostMapping("/test2")
     public String test2(@RequestBody  Order order){
         log.info(order.toString());
         return "order端口是 "+port;
     }
+
+
+    // 接受数组类型  /test?ids=21&ids=22
+    @GetMapping("/test3")
+    public String test3(@RequestParam("ids") String[] ids){
+        for (String id : ids) {
+            log.info("id:{}",id);
+        }
+        return "test3 ok order端口是 "+port;
+    }
+
+    // 不能直接接受集合类型，必须放入对象  vo  value object 值对象
+    // dto  data transfer(传输) object：数据传输对象
+    // 暂时有问题
+    @GetMapping("/test4")
+    public String test4(CollectionVO collectionVO){
+        for (String id : collectionVO.getIds()) {
+            log.info("id:{}",id);
+        }
+        return "test4 ok order端口是 "+port;
+    }
+
+
+    // 返回对象
+    @PostMapping("/test5")
+    public Order test5(@RequestBody  Order order){
+        log.info(order.toString());
+        return order;
+    }
+
 }

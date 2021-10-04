@@ -33,7 +33,7 @@ public class UserController {
     private OrdersClient ordersClient;
 
     @GetMapping
-    public String demo(){
+    public Order demo(){
 
         log.info("user demo");
         // http://localhost:9999/order
@@ -62,11 +62,21 @@ public class UserController {
         //String orderResult = ordersClient.orderDemo();
        // String orderResult = ordersClient.test("小代",25);
         // String orderResult = ordersClient.test1(1,"代");
+
+
         Order order = new Order();
         order.setId(100);
         order.setName("代柿焜");
-        String orderResult = ordersClient.test2(order);
-        log.info(orderResult);
-        return orderResult;
+       // String orderResult = ordersClient.test2(order);
+
+
+
+        //String orderResult = ordersClient.test3(new String[]{"1","2","3"});
+
+       // String orderResult = ordersClient.test4(new String[]{"1","2","3"});
+        //log.info(orderResult);
+       // return orderResult;
+
+        return ordersClient.test5(order);
     }
 }

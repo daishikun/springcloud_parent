@@ -1,9 +1,10 @@
 package com.dsk.feignclient;
 
-
 import com.dsk.entity.Order;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 //调用订单服务  服务id
 @FeignClient(value = "ORDERS")
@@ -25,4 +26,19 @@ public interface OrdersClient {
     // 对象接收
     @PostMapping("/order/test2")
     String test2(@RequestBody Order order);
+
+
+    // 数组类型
+    @GetMapping("/order/test3")
+    String test3(@RequestParam("ids") String[] ids);
+
+    //@GetMapping("/order/test4")  test4?ids=xx&ids=xx
+    //public String test4(List<String> ids)
+    @GetMapping("/order/test4")
+    String test4(@RequestParam("ids") String[] ids);
+
+    // 返回值为对象
+    @PostMapping("/order/test5")
+    Order test5(@RequestBody  Order order);
+
 }
