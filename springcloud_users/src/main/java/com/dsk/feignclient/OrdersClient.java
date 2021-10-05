@@ -1,15 +1,15 @@
 package com.dsk.feignclient;
 
 import com.dsk.entity.Order;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 //调用订单服务  服务id
-@FeignClient(value = "ORDERS")
+@FeignClient(value = "ORDERS",fallback = OrdersClientFallback.class)
 public interface OrdersClient {
-
+/*
     // 调用商品服务
     @GetMapping("/order")
     String orderDemo();
@@ -40,5 +40,10 @@ public interface OrdersClient {
     // 返回值为对象
     @PostMapping("/order/test5")
     Order test5(@RequestBody  Order order);
+
+*/
+
+    @GetMapping("/order/demo")
+    String demo(@RequestParam("id") Integer id);
 
 }

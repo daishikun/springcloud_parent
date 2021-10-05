@@ -2,6 +2,7 @@ package com.dsk.controller;
 
 import com.dsk.entity.Order;
 import com.dsk.vos.CollectionVO;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -73,6 +74,25 @@ public class OrderController {
     public Order test5(@RequestBody  Order order){
         log.info(order.toString());
         return order;
+    }
+    @GetMapping("demo")
+    //熔断之后的处理
+    //@HystrixCommand(fallbackMethod = "demoFallback")
+    @HystrixCommand(defaultFallback = "defaultFallback")
+    public String demo(Integer id){
+        System.out.println("demo ok");
+        if (id<=0){
+            throw new RuntimeException("无效id");
+        }
+        return "demo ok";
+    }
+    public String demoFallback(Integer id){
+        return "活动过于火爆，服务熔断";
+
+    }
+
+    public String defaultFallback(){
+        return "默认的，活动过于火爆，服务熔断";
     }
 
 }

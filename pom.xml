@@ -13,6 +13,7 @@
         <module>springcloud_eurka_client</module>
         <module>springcloud_users</module>
         <module>springcloud_orders</module>
+        <module>springcloud_hystrix_dashboard</module>
     </modules>
 
     <!--继承springboot的父项目-->

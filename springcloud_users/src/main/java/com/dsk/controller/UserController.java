@@ -2,6 +2,8 @@ package com.dsk.controller;
 
 import com.dsk.entity.Order;
 import com.dsk.feignclient.OrdersClient;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.ribbon.proxy.annotation.Hystrix;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,7 @@ public class UserController {
     
     @Autowired
     private OrdersClient ordersClient;
-
+/*
     @GetMapping
     public Order demo(){
 
@@ -79,4 +81,17 @@ public class UserController {
 
         return ordersClient.test5(order);
     }
+
+*/
+
+
+    @RequestMapping("test")
+    public String test(){
+        System.out.println(111);
+        String demp = ordersClient.demo(-1);
+        System.out.println(demp);
+        return "test ok";
+
+    }
+
 }

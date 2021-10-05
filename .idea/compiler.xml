@@ -10,6 +10,7 @@
         <module name="springcloud_users" />
         <module name="springcloud_eureka_server" />
         <module name="springcloud_orders" />
+        <module name="springcloud_hystrix_dashboard" />
       </profile>
     </annotationProcessing>
   </component>
@@ -17,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="springcloud_eureka_server" options="-parameters" />
       <module name="springcloud_eurka_client" options="-parameters" />
+      <module name="springcloud_hystrix_dashboard" options="-parameters" />
       <module name="springcloud_orders" options="-parameters" />
       <module name="springcloud_users" options="-parameters" />
     </option>
