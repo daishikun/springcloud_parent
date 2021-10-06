@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="springcloud_gateway" />
         <module name="springcloud_eurka_client" />
         <module name="springcloud_users" />
         <module name="springcloud_eureka_server" />
@@ -18,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="springcloud_eureka_server" options="-parameters" />
       <module name="springcloud_eurka_client" options="-parameters" />
+      <module name="springcloud_gateway" options="-parameters" />
       <module name="springcloud_hystrix_dashboard" options="-parameters" />
       <module name="springcloud_orders" options="-parameters" />
       <module name="springcloud_users" options="-parameters" />

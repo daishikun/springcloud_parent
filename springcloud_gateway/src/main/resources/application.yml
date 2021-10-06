@@ -1,0 +1,36 @@
+server:
+  port: 7979
+spring:
+  application:
+    name: GATEWAY
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+    gateway:
+      routes:
+        - id: order_route   #路由对象的唯一标识
+          #uri: http://localhost:9990 #访问服务的地址  http://localhost:9990/order
+          uri: lb://ORDERS
+          predicates:    #断言  配置路由规则   路径断言
+            #- Path=/order/**  #,/order/test   这样不好的就是日志进不来
+            - After=2021-10-05T18:54:22.322+08:00[Asia/Shanghai]  #时间断言  -Before
+            #- Cookie=xxx,xxx
+#            - Cookie=xxx,[A-Za-z0-9]+
+#            - Header=xxx,xxx
+#            - Method=Get,POST
+          filters:
+            - AddRequestHeader=name, blue
+            - AddRequestParameter=color, blue
+            - AddResponseHeader=X-Response-Red, Blue
+            #- PrefixPath=/mypath #所有转发加前缀  转发之前进行拼接
+            #- StripPrefix=1 #去前缀  he断言的Path结合Url加了匹配了然后删除
+# 暴露路径
+management:
+  endpoints:
+    web:
+      exposure:
+        incluede: '*'
+# http://localhost:7979/actuator/gateway/routes  有问题

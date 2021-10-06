@@ -2,7 +2,6 @@ package com.dsk.controller;
 
 import com.dsk.entity.Order;
 import com.dsk.feignclient.OrdersClient;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.ribbon.proxy.annotation.Hystrix;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

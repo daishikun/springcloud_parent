@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +21,12 @@ public class OrderController {
 
     public static final Logger log = LoggerFactory.getLogger(OrderController.class);
     @GetMapping
-    public String orderDemo(){
-        log.info("order demo");
-        return "order demo 端口是 "+port;
+    public String orderDemo(HttpServletRequest request,String color){
+        System.out.println(request.toString());
+        String header = request.getHeader("name");
+        log.info("order demo"+header);
+        return "order demo 端口是 "+port   + "header is"+header + "" +
+                "color"+color;
     }
 
 
